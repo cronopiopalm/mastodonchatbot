@@ -50,12 +50,12 @@ def iterate_through():
 		inputtext = h.handle(post["status"]["content"]).strip("\n")
 		# remove @
 		inputtext = ' '.join(word for word in inputtext.split(' ') if not word.startswith('@'))
-    # setup system prompt
+    		# setup system prompt
 		messages = [{"role": "system", "content": "你是一个非常实用的 AI 助手"},]	
 
 		# load context
 		if post['status']['in_reply_to_id']:
-      # load chat history as dictionary {id: content}
+     			# load chat history as dictionary {id: content}
 			context_dict = [[x["account"]["id"], h.handle(x["content"]).strip("\n")] for x in mastodon.status_context(post['status']['id'])['ancestors']]
 			for d in context_dict:
 				# if author is not me, log as user
